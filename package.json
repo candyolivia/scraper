@@ -17,8 +17,11 @@
   },
   "homepage": "https://github.com/candyolivia/scraper#readme",
   "dependencies": {
+    "async": "^1.5.2",
     "cheerio": "^0.20.0",
+    "deasync": "^0.1.4",
     "express": "^4.13.4",
+    "promise": "^7.1.1",
     "request": "^2.69.0"
   }
 }

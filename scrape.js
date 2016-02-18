@@ -10,7 +10,6 @@ app.get('/scrape', function(req, res){
   		if (!error) {
   			var $ = cheerio.load(html);
 
-  			var title, release, rating;
   			var json = { menu : "" , url : ""};
 
   			$('li > a').each(function(){
