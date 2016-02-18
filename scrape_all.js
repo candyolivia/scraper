@@ -56,12 +56,8 @@ app.get('/scrape_all', function(req, res){
           
         });
 
-        for (var a in submenu) {
-          json[submenu] = r;
-        }
-        
-        console.log(json);
-        resolve(json);
+        //console.log(r);
+        resolve(r);
     });
   }
 
@@ -74,11 +70,15 @@ app.get('/scrape_all', function(req, res){
         } else {
           var $ = cheerio.load(html);
           var submenu = req.name;
-          var json = [];
+          var json = {};
           childReq($,submenu).then(
             function(res) {
+
+              for (var a in submenu) {
+                json[submenu] = res;
+              }
               //json.push(res);
-              resolve(res);
+              resolve(json);
             }, function(res) {
 
             });
@@ -93,10 +93,11 @@ app.get('/scrape_all', function(req, res){
       
       var actions = res.map(processCategoryPage);
       var results = Promise.all(actions); 
-
+      var finalResult = {};
       results.then(function(res) {
         //json.push(res);
-        console.log(res);
+        finalResult = JSON.stringify(res,null,2);
+        console.log(finalResult);
       });
     },
     function(res) {
